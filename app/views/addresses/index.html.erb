@@ -1,0 +1,25 @@
+<% provide(:title, 'Addresses') %>
+<div>
+	<%= link_to 'Add Address', new_address_path, class: 'btn btn-primary'%>
+</div>
+
+<div>
+	<% if !@addresses.empty? %>
+		<% @addresses.each do |address| %>
+			<div class = 'shop-details productinfo col-md-3'>
+				<a href= "<%= edit_address_path(address) %>">
+					Address Name: <%= address.name %> <br/>
+					Address: <%= address.address_1 + " " + address.address_2 %> <br/>
+					City: <%= address.city %> <br/>
+					State: <%= address.state %> <br/>
+					Pincode: <%= address.pincode %> <br/>
+				</a>
+				<%= button_to(address_path(address),class:'btn btn-primary light-red delete-button', method: :delete, data: { confirm: 'Are you sure to remove?' }) do %>
+					<i class="fa fa-trash" aria-hidden="true"></i>
+				<% end %>
+			</div>
+		<% end %>
+	<% else %>
+		<h2> There is no address. Add a new one </h2>	
+	<% end %>
+</div>
